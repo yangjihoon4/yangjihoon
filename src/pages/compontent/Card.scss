@@ -1,0 +1,140 @@
+#Card {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
+  .card-list-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 0;
+    padding: 20px 20px;
+    background-color: #fff;
+    width: 320px;
+    min-height: 100px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    -webkit-transition: background-color 0.5s, -webkit-transform 1.5s;
+    transition: background-color 0.5s, transform 1.5 s;
+    box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
+  }
+  .card-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .card-list-box:hover {
+    background-color: rgb(233, 233, 233);
+    -webkit-transition: background-color 0.3s, -webkit-transform 1s;
+    transition: background-color 0.3s, transform 1s;
+
+    .toggle-btn {
+      border-radius: 5px;
+      color: black;
+      text-align: center;
+      box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
+      margin: 2px;
+    }
+  }
+  .toggle-btn-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .toggle-btn-wrapper {
+    position: absolute;
+    margin-left: 76px;
+  }
+  .toggle-btn {
+    display: flex;
+    flex-direction: column;
+    width: 73px;
+    height: 30px;
+    padding-top: 8px;
+    border: 0;
+    background-color: #fff;
+    font-size: 12px;
+    font-weight: 550;
+    color: #fff;
+    text-align: center;
+
+    cursor: pointer;
+  }
+  .toggle-btn2 {
+    position: absolute;
+    right: 1001px;
+    display: flex;
+    flex-direction: column;
+    width: 73px;
+    height: 30px;
+    padding-top: 3px;
+    border: 0;
+    background-color: #fff;
+    font-size: 12px;
+    font-weight: 550;
+    color: #fff;
+    text-align: center;
+
+    cursor: pointer;
+  }
+  .toggle-btn:hover {
+    background-color: rgb(238, 242, 255);
+    text-align: center;
+    color: black;
+    -webkit-transition: background-color 0.3s, -webkit-transform 1s;
+    transition: background-color 0.3s, transform 1s;
+  }
+
+  .check-image {
+    width: 20px;
+    border-radius: 30px;
+    background-color: #fff;
+
+    cursor: pointer;
+  }
+  .check-image:hover {
+    width: 20px;
+    border-radius: 30px;
+    background-color: rgb(185, 202, 255);
+
+    cursor: pointer;
+    -webkit-transition: background-color 0.3s, -webkit-transform 1s;
+    transition: background-color 0.3s, transform 1s;
+  }
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+
+    .card-name {
+      word-break: break-all;
+    }
+    .card-manager {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      word-break: break-all;
+    }
+  }
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  .card-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+
+    .card-name {
+      word-break: break-all;
+      min-height: 80px;
+      font-weight: 450;
+    }
+    .card-manager {
+      word-break: break-all;
+      font-weight: 450;
+    }
+  }
+}
