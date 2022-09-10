@@ -2,6 +2,7 @@ import React, { useState, useEffect, } from 'react';
 import './todolist.scss';
 import Content from './compontent/Content';
 import logoImage from '../images/tree.png';
+import { Draggable, Droppable } from 'react-drag-and-drop'
 
 function TodoList() {
 
@@ -21,6 +22,7 @@ function TodoList() {
           </div>
           <div className='content'>
             <Content />
+
           </div>
           <div className='footer' />
         </div>

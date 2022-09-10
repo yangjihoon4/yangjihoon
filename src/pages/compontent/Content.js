@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Section from './Section.js';
 import './../todolist.scss';
 import axios from 'axios';
-import io from 'socket.io-client';
+import { DndProvider, useDrag } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+// import io from 'socket.io-client';
 
 
 
@@ -10,17 +12,17 @@ import io from 'socket.io-client';
 
 
 function Content() {
-  const socket = io.connect("http://localhost:4000", { transports: ["websocket"] });
+  // const socket = io.connect("http://localhost:4000", { transports: ["websocket"] });
 
-  socket.on("connection", () => {
-    console.log("connection server");
+  // socket.on("connection", () => {
+  //   console.log("connection server");
 
 
-  })
-  socket.emit("message", "핑")
-  socket.on("message", function (req) {
-    console.log(req);
-  })
+  // })
+  // socket.emit("message", "핑")
+  // socket.on("message", function (req) {
+  //   console.log(req);
+  // })
 
   // socket.emit('message', ({ sectionName }))
   // console.log('주는 sectionName:', sectionName)
@@ -34,6 +36,22 @@ function Content() {
   //   socket.emit('sections', ({ sectionId, sectionName }))
   // })
 
+  const MovableItem = () => {
+    const [{ isDragging }, drag] = useDrag({
+      item: { name: 'Any custom name', type: 'Irrelevant, for now' },
+      collect: (monitor) => ({
+        isDragging: monitor.isDragging(),
+      }),
+    });
+
+    const opacity = isDragging ? 0.4 : 1;
+
+    return (
+      <div ref={drag} className='movable-item' style={{ opacity }}>
+        We will move this item
+      </div>
+    )
+  }
 
 
   //섹션을 관리하는 state`
@@ -80,12 +98,12 @@ function Content() {
   const [sectionId, setSectionId] = useState();
   const [inputSection, setInputSection] = useState(false);
 
-  useEffect(() => {
-    socket.emit("sections", { sectionName, sectionId })
-    socket.on("sections", ({ sectionName, sectionId }) => {
-      setSections([...sections, { sectionName, sectionId }])
-    })
-  }, []);
+  // useEffect(() => {
+  //   socket.emit("sections", { sectionName, sectionId })
+  //   socket.on("sections", ({ sectionName, sectionId }) => {
+  //     setSections([...sections, { sectionName, sectionId }])
+  //   })
+  // }, []);
 
 
   const addSection = () => {
@@ -138,18 +156,22 @@ function Content() {
 
       <div className='content-container'>
 
-
         {sections.map(
-          section => <Section
-            section={section}
-            sections={sections}
-            setSections={setSections}
-            sectionName={sectionName}
-            setSectionName={setSectionName}
-            sectionId={section.sectionId}
-            tasks={tasks}
-            setTasks={setTasks}
-          />)
+          section =>
+            <DndProvider backend={HTML5Backend}>
+              <Section
+                section={section}
+                sections={sections}
+                setSections={setSections}
+                sectionName={sectionName}
+                setSectionName={setSectionName}
+                sectionId={section.sectionId}
+                tasks={tasks}
+                setTasks={setTasks}
+              />
+            </DndProvider>
+
+        )
         }
 
         <div className='content-board-wrapper'>

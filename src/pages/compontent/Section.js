@@ -4,12 +4,23 @@ import AddModal from '../modal/addModal.js';
 import Image1 from '../../images/gardening.png';
 import './../todolist.scss';
 import axios from 'axios';
+import { DndProvider, useDrag } from "react-dnd";
+
 
 
 
 
 function Section({ section, sections, setSections, sectionName, setSectionName, sectionId, tasks, setTasks }) {
+  const MovableItem = () => {
+    const [{ isDragging }, drag] = useDrag({
+      item: { name: 'Any custom name', type: 'Irrelevant, for now' },
+      collect: (monitor) => ({
+        isDragging: monitor.isDragging(),
+      }),
+    });
 
+    const opacity = isDragging ? 0.4 : 1;
+  }
 
 
 

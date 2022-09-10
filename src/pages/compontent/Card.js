@@ -2,11 +2,20 @@ import React, { useEffect, useState } from "react";
 import './Card.scss';
 import CardImage from '../../images/checkmark.png';
 import axios from 'axios';
+import { DndProvider, useDrag } from "react-dnd";
+
 
 
 
 function Card({ task, tasks, setTasks, status, manager, taskName, setTaskName, taskNumber, section, sections, sectionId, sectionName }) {
 
+  const [{ isDragging }, drag] = useDrag({
+    item: { name: 'Any custom name', type: 'Irrelevant, for now' },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  });
+  const opacity = isDragging ? 0.4 : 1;
 
 
   const [toggle, setToggle] = useState(false);
@@ -174,7 +183,7 @@ function Card({ task, tasks, setTasks, status, manager, taskName, setTaskName, t
 
 
   return (
-    <div id="Card" >
+    <div id="Card" ref={drag} style={{ opacity }} >
       <div className='card-list-box'>
         <div className="card-container">
 
